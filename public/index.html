@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta MSSQL</title>
+</head>
+<body>
+    <h1>Consulta MSSQL</h1>
+    <textarea id="sql-query" rows="5" cols="60" placeholder="Escribe tu consulta SQL aquí"></textarea><br>
+    <button onclick="ejecutarConsulta()">Ejecutar</button>
+    <pre id="resultado"></pre>
+
+    <script>
+        async function ejecutarConsulta() {
+            const query = document.getElementById('sql-query').value;
+            const resultado = document.getElementById('resultado');
+            try {
+                const response = await fetch('/query', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    resultado.textContent = JSON.stringify(data, null, 2);
+                } else {
+                    resultado.textContent = 'Error: ' + data.error;
+                }
+            } catch (error) {
+                resultado.textContent = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
