@@ -1,0 +1,36 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL Query Frontend</title>
+</head>
+<body>
+  <h1>Ejecutar Query en MSSQL</h1>
+  <textarea id="query" rows="6" cols="60">SELECT * FROM vw_PlanesConAuditores;</textarea><br><br>
+  <button onclick="runQuery()">Ejecutar</button>
+  <pre id="output"></pre>
+
+  <script>
+    async function runQuery() {
+      const query = document.getElementById('query').value;
+      const output = document.getElementById('output');
+      output.textContent = 'Ejecutando...';
+
+      try {
+        const res = await fetch('http://localhost:3000/query', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ query }),
+        });
+        const data = await res.json();
+        output.textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        output.textContent = 'Error: ' + err.message;
+      }
+    }
+  </script>
+</body>
+</html>
