@@ -1,5 +1,5 @@
-const express = require('express');
 const sql = require('mssql');
+const express = require('express');
 const path = require('path');
 const app = express();
 const port = 3000;
@@ -17,8 +17,21 @@ const dbConfig = {
     }
 };
 
+/*
+export const getConnection = async () => {
+    try {
+        const pool = await sql.connect(dbConfig);
+        return pool;
+    } catch (err) {
+        console.error('Error de conexión a la base de datos:', err);
+        throw err;
+    }
+};*/
+
+
+
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'src/pages/sign-in')));
 
 // Ruta para ejecutar consultas SQL
 app.post('/query', async (req, res) => {
@@ -30,6 +43,10 @@ app.post('/query', async (req, res) => {
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/pages/sign-in', 'sign-in.html'));
 });
 
 app.listen(port, () => {
