@@ -1,6 +1,7 @@
 const sql = require('mssql');
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 const app = express();
 const port = 3000;
 
@@ -35,10 +36,14 @@ app.use(express.static(path.join(__dirname, 'src/pages/sign-in')));
 app.post('/query', async (req, res) => {
     const { query } = req.body;
     try {
+        console.log('Conectando a la base de datos...');
         const pool = await sql.connect(dbConfig);
+        console.log('Conexión exitosa a la base de datos');
         const result = await pool.request().query(query);
         res.json(result.recordset);
     } catch (err) {
+        console.log('Error al ejecutar la consulta:', err);
+        
         res.status(500).json({ error: err.message });
     }
 });

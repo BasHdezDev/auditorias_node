@@ -22,16 +22,17 @@ body {
 /* Sidebar */
 .sidebar {
   width: 220px;
-  background-color: linear-gradient(to right, #006888, #00a5ae);
+  background-color: #fff;
   padding: 30px 20px;
   backdrop-filter: blur(8px);
 }
 
 .sidebar h2 {
-  color: linear-gradient(to right, #4facfe, #00f2fe);
+  color: #4facfe;
   margin-bottom: 30px;
   font-size: 1.5em;
   text-align: center;
+  align-items: center;
 }
 
 .sidebar nav ul {
@@ -43,12 +44,12 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: white;
+  color: #4facfe;
   font-size: 1em;
 }
 
 .sidebar nav a {
-  color: white;
+  color: #4facfe;
   text-decoration: none;
 }
 
@@ -119,6 +120,7 @@ body {
   width: 280px;
   height: auto;
   border-radius: 15px;
+  margin-right: 20%;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
