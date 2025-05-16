@@ -14,6 +14,7 @@
         async function ejecutarConsulta() {
             const query = document.getElementById('sql-query').value;
             const resultado = document.getElementById('resultado');
+            resultado.textContent = 'Ejecutando...';
             try {
                 const response = await fetch('/query', {
                     method: 'POST',
