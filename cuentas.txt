@@ -1,0 +1,7 @@
+usuario con todos los privilegios
+admin
+mssqldatabase
+
+usuario de solo lectura
+solo_lectura
+sololectura
