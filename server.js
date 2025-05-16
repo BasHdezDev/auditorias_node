@@ -28,8 +28,6 @@ export const getConnection = async () => {
     }
 };*/
 
-
-
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'src/pages/sign-in')));
 
